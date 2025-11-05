@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Ticket Management</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+<header>
+  <img src="VSP001.png" alt="Ticket Logo" class="logo">
+  <div class="company-info">
+    <h1>Vsmart Technologies Pvt Ltd</h1>
+    <h2>Ticket Management System</h2>
+  </div>
+  <nav>
+    <a href="#">Dashboard</a>
+    <a href="Create New Ticket.html">Create Ticket</a>
+    <a href="#">Closed Tickets</a>
+    <a href="#">My Tickets</a>
+    <a href="#">Reports</a>
+    <a href="login.html" id="logoutBtn">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Closed Tickets</h2>
+  <table id="ticketTable">
+    <tr>
+      <th>ID</th>
+      <th>Open Date</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Customer Name</th>
+      <th>Status</th>
+      <th>Assigned To</th>
+      <th>Closed Date</th>
+    </tr>
+  </table>
+
+  <div id="pagination">
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+    <button id="submitBtn">submit</button>
+  </div>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  let tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+  let table = document.getElementById("ticketTable");
+  let prevBtn = document.getElementById("prevBtn");
+  let nextBtn = document.getElementById("nextBtn");
+
+  let rowsPerPage = 10;
+  let currentPage = 1;
+  let totalPages = Math.ceil(tickets.length / rowsPerPage);
+
+  function renderTable(page) {
+    table.querySelectorAll("tr:not(:first-child)").forEach(tr => tr.remove());
+
+    let start = (page - 1) * rowsPerPage;
+    let end = start + rowsPerPage;
+    let pageTickets = tickets.slice(start, end);
+
+    pageTickets.forEach(ticket => {
+      let row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${ticket.id}</td>
+        <td>${ticket.date || ''}</td>
+        <td>${ticket.title || ''}</td>
+        <td>${ticket.description || ''}</td>
+        <td>${ticket.customer || ''}</td>
+        <td>
+          <select class="statusDropdown">
+            <option value="Open" ${ticket.status === "Open" ? "selected" : ""}>Open</option>
+            <option value="In Progress" ${ticket.status === "In Progress" ? "selected" : ""}>In Progress</option>
+            <option value="Resolved" ${ticket.status === "Resolved" ? "selected" : ""}>Resolved</option>
+            <option value="Closed" ${ticket.status === "Closed" ? "selected" : ""}>Closed</option>
+          </select>
+        </td>
+        <td>${ticket.assigned || ''}</td>
+        <td>${ticket.closeddate || ''}</td>
+      `;
+      table.appendChild(row);
+
+      // Update ticket status dynamically
+      let statusSelect = row.querySelector(".statusDropdown");
+      statusSelect.addEventListener("change", (e) => {
+        ticket.status = e.target.value;
+        ticket.closeddate = ticket.status === "Closed" ? new Date().toLocaleDateString() : "";
+        localStorage.setItem("tickets", JSON.stringify(tickets));
+        updateCards();
+        renderTable(currentPage);
+      });
+    });
+
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+  }
+
+  function updateCards() {
+    let openCount = tickets.filter(t => t.status === "Open").length;
+    let inProgress = tickets.filter(t => t.status === "In Progress").length;
+    let resolved = tickets.filter(t => t.status === "Resolved").length;
+    let closed = tickets.filter(t => t.status === "Closed").length;
+
+    document.querySelector(".cards").innerHTML = `
+      <div class="card">Open Tickets: ${openCount}</div>
+      <div class="card">In Progress: ${inProgress}</div>
+      <div class="card">Resolved: ${resolved}</div>
+      <div class="card">Closed: ${closed}</div>
+    `;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderTable(currentPage);
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderTable(currentPage);
+    }
+  });
+
+  renderTable(currentPage);
+  updateCards();
+
+  document.getElementById("logoutBtn").addEventListener("click", function() {
+    alert("You have been logged out ✅");
+  });
+});
+</script>
+</body>
+</html>

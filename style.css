@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background: #f4f4f4;
+  }
+  
+  header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .vsmartlogo {
+    height: 60px;    /* controls logo size */
+    width: auto;     /* keeps proportion */
+    margin-right: 15px;
+  }
+  
+  nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .container, main {
+    width: 80%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+  
+  form label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  input, textarea, select, button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  button {
+    background: #2980b9;
+    color: white;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #76261a;
+  }
+  
+  .cards {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    flex: 1;
+    background: #3498db;
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+
+ 
+  .container {
+    width: 400px;
+    margin: 80px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+  }
+  
+  .container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  input, select, button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    background: #2980b9;
+    color: white;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #1a5276;
+  }
+  
+  p {
+    text-align: center;
+    margin-top: 15px;
+  }
+  /* General Body */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0; padding: 0;
+  background: #f4f4f4;
+}
+
+/* Header with logo and nav */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2c3e50;
+  color: white;
+  padding: 10px 20px;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 15px;
+}
+
+.company-info h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.company-info h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+  color: #dcdcdc;
+}
+
+/* Navigation Menu */
+nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main Content */
+main {
+  width: 85%;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.card {
+  flex: 1;
+  background: #3498db;
+  color: white;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+table, th, td {
+  border: 1px solid #dddddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #2c3e50;
+  color: white;
+}
